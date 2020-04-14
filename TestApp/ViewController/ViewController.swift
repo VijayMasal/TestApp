@@ -20,6 +20,7 @@ let viewModel: RowsTableViewViewModel = RowsTableViewViewModel()
         setUpTableview()
     }
     
+    //Bind Data from RowsTableViewViewModel
     func bindViewModel() {
     viewModel.rowsCells.bindAndFire() { [weak self] _ in
         self!.title = self!.viewModel.title
@@ -28,6 +29,8 @@ let viewModel: RowsTableViewViewModel = RowsTableViewViewModel()
     }
     
     func setUpTableview()  {
+        
+        // Add tableview constraint using Anchor
     self.factTableView = UITableView(frame: self.factTableView.frame, style: .grouped)
          self.view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
@@ -59,6 +62,7 @@ extension ViewController : UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch viewModel.rowsCells.value[indexPath.row] {
                case .normal(let viewModel):
                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CustomTableViewCell else {
