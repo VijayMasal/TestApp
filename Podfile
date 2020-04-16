@@ -7,6 +7,7 @@ target 'TestApp' do
 
  pod 'AlamofireImage', '~> 3.1'
  pod 'Alamofire', '~> 4.4'
+pod 'SwiftLint'
   target 'TestAppTests' do
     inherit! :search_paths
     # Pods for testing
