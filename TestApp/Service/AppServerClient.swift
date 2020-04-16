@@ -24,7 +24,7 @@ class AppServerClient {
 
 
 
-    func getFriends(completion: @escaping GetFriendsCompletion) {
+    func getFacts(completion: @escaping GetFriendsCompletion) {
         var rowsData = [Rows]()
         
         let url = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"

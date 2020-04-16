@@ -26,7 +26,7 @@ class RowsTableViewViewModel {
 
    func getFactsData() {
        
-        appServerClient.getFriends(completion: { [weak self] result in
+        appServerClient.getFacts(completion: { [weak self] result in
             switch result {
             case .success(let friends):
                 self!.title = friends.title
