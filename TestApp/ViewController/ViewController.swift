@@ -44,6 +44,7 @@ let viewModel: RowsTableViewViewModel = RowsTableViewViewModel()
         factTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
         factTableView.estimatedRowHeight = 80
         factTableView.rowHeight = UITableView.automaticDimension
+        self.factTableView.accessibilityIdentifier = "factTableView"
         
         DispatchQueue.main.async {
             self.factTableView.dataSource = self
