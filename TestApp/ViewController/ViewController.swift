@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+/**
+ ViewController shows facts into tableview, inside tableview using custom cell into custom cell show title, description, imageHref.
+ Tableview and cutom cell using programatic constraint using Anchor constraint.
+ */
 class ViewController: UIViewController {
 let viewModel: RowsTableViewViewModel = RowsTableViewViewModel()
     var factTableView = UITableView()
@@ -20,17 +23,15 @@ let viewModel: RowsTableViewViewModel = RowsTableViewViewModel()
         setUpTableview()
     }
     
-    //Bind Data from RowsTableViewViewModel
+    /**Bind Data from RowsTableViewViewModel */
     func bindViewModel() {
     viewModel.rowsCells.bindAndFire() { [weak self] _ in
         self?.title = self?.viewModel.title
         self?.factTableView.reloadData()
     }
     }
-    
+    /** Add tableview constraint using Anchor */
     func setUpTableview()  {
-        
-        // Add tableview constraint using Anchor
     self.factTableView = UITableView(frame: self.factTableView.frame, style: .grouped)
          self.view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
@@ -40,23 +41,18 @@ let viewModel: RowsTableViewViewModel = RowsTableViewViewModel()
         factTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         factTableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
         factTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
         factTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
         factTableView.estimatedRowHeight = 80
         factTableView.rowHeight = UITableView.automaticDimension
         self.factTableView.accessibilityIdentifier = "factTableView"
-        
         DispatchQueue.main.async {
             self.factTableView.dataSource = self
             self.factTableView.reloadData()
         }
-       
     }
-    
-
-
 }
 
+// MARK: - UITableViewDataSource
 extension ViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.rowsCells.value.count

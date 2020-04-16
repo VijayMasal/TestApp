@@ -11,6 +11,10 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
+/** CustomTableViewCell
+ 
+ CustomTableViewCell show title, description, and imageHref.
+ */
 class CustomTableViewCell: UITableViewCell {
 
     let imageHref = UIImageView()
@@ -23,7 +27,7 @@ class CustomTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    
+    /**Title,description and imageHref data  binds from RowsCellViewModel to cell*/
     var viewModel: RowsCellViewModel? {
            didSet {
                bindViewModel()
@@ -51,7 +55,7 @@ class CustomTableViewCell: UITableViewCell {
         }
         
        }
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.addSubview(containerView)
@@ -59,24 +63,14 @@ class CustomTableViewCell: UITableViewCell {
         containerView.addSubview(title)
         containerView.addSubview(descriptions)
         
-        
          let marginGuide = contentView.layoutMarginsGuide
-        
         containerView.clipsToBounds = true
        containerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-
-     containerView.topAnchor.constraint(equalTo:marginGuide.topAnchor).isActive = true
-        containerView.leadingAnchor.constraint(equalTo:marginGuide.leadingAnchor).isActive = true
-        containerView.trailingAnchor.constraint(equalTo:marginGuide.trailingAnchor).isActive = true
+       containerView.topAnchor.constraint(equalTo:marginGuide.topAnchor).isActive = true
+    containerView.leadingAnchor.constraint(equalTo:marginGuide.leadingAnchor).isActive = true
+   containerView.trailingAnchor.constraint(equalTo:marginGuide.trailingAnchor).isActive = true
         
         containerView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
-        
-        
-        
-        
-        
         containerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
        
          imageHref.translatesAutoresizingMaskIntoConstraints = false
@@ -99,8 +93,6 @@ class CustomTableViewCell: UITableViewCell {
           descriptions.translatesAutoresizingMaskIntoConstraints = false
         descriptions.topAnchor.constraint(equalTo:self.title.bottomAnchor).isActive = true
         descriptions.leadingAnchor.constraint(equalTo:imageHref.trailingAnchor, constant: 10).isActive = true
-        
-
         descriptions.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
         descriptions.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
         
