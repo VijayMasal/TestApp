@@ -11,25 +11,23 @@ import XCTest
 
 class TestAppTests: XCTestCase {
 
-   func testSuccessfulInit() {
-        let testSuccessfulJSON: JSON = [
-            "title": "Beavers",
-            "description": "Beavers are second only to humans in their ability to manipulate and change their environment. They can measure up to 1.3 metres long. A group of beavers is called a colony",
-            "imageHref": "http://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/220px-American_Beaver.jpg"
-        ]
-     
-     
-     guard let title = testSuccessfulJSON["firstname"] as? String else {
-         return
-     }
-     
-     guard let description = testSuccessfulJSON["description"] as? String else {
-                return
-            }
-     guard let imageHref = testSuccessfulJSON["imageHref"] as? String else {
-                return
-            }
-     
-        XCTAssertNotNil(Rows(title: title, description: description, imageHref: imageHref))
-    }
+   var appServerClient = AppServerClient()
+   //In testApiCalls method fetch api response and check data is not nill inside resonse
+    func testApiCalls() {
+       let e = expectation(description: "Alamofire")
+       appServerClient.getFacts(completion: { [weak self] result in
+           switch result {
+               case .success(let facts):
+                  XCTAssertNotNil(facts.title)
+                  XCTAssertTrue(facts.row.count > 0)
+                   XCTAssertNotNil(facts.row[0])
+                   XCTAssertNotNil(facts.row[0])
+                    e.fulfill()
+               case .failure(let error):
+                   print("Error \(error.debugDescription)")
+               }
+           })
+        waitForExpectations(timeout: 2.0, handler: nil)
+       
+         }
 }
