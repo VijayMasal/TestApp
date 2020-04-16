@@ -23,7 +23,7 @@ let viewModel: RowsTableViewViewModel = RowsTableViewViewModel()
     //Bind Data from RowsTableViewViewModel
     func bindViewModel() {
     viewModel.rowsCells.bindAndFire() { [weak self] _ in
-        self!.title = self!.viewModel.title
+        self?.title = self?.viewModel.title
         self?.factTableView.reloadData()
     }
     }
