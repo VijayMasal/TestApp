@@ -13,8 +13,6 @@ protocol RowsCellViewModel {
     var imageHrefs: String { get }
 }
 
-
-
 extension Rows : RowsCellViewModel{
     var rowsItem: Rows {
         return self
