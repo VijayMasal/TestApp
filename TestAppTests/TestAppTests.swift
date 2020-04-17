@@ -5,14 +5,10 @@
 //  Created by Vijay Masal on 14/04/20.
 //  Copyright © 2020 Vijay Masal. All rights reserved.
 //
-
 import XCTest
 @testable import TestApp
-
 class TestAppTests: XCTestCase {
-
    var appServerClient = AppServerClient()
-   //In testApiCalls method fetch api response and check data is not nill inside resonse
     func testApiCalls() {
        let e = expectation(description: "Alamofire")
        appServerClient.getFacts(completion: { [weak self] result in
@@ -27,7 +23,6 @@ class TestAppTests: XCTestCase {
                    print("Error \(error.debugDescription)")
                }
            })
-        waitForExpectations(timeout: 2.0, handler: nil)
-       
+        waitForExpectations(timeout: 5.0, handler: nil)
          }
 }

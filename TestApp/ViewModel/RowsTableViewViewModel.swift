@@ -5,27 +5,21 @@
 //  Created by Vijay Masal on 14/04/20.
 //  Copyright © 2020 Vijay Masal. All rights reserved.
 //
-
+// MARK: -ViewModel
 class RowsTableViewViewModel {
-
     enum RowsTableViewCellType {
         case normal(cellViewModel: RowsCellViewModel)
         case error(message: String)
         case empty
     }
-
     let showLoadingHud: Bindable = Bindable(false)
      let rowsCells = Bindable([RowsTableViewCellType]())
     let appServerClient: AppServerClient
     var title : String = ""
-    
-
     init(appServerClient: AppServerClient = AppServerClient()) {
         self.appServerClient = appServerClient
     }
-
    func getFactsData() {
-       
         appServerClient.getFacts(completion: { [weak self] result in
             switch result {
             case .success(let friends):
@@ -40,10 +34,7 @@ class RowsTableViewViewModel {
             }
         })
     }
-    
 }
-
-// MARK: - AppServerClient.GetFriendsFailureReason
 fileprivate extension AppServerClient.GetFriendsFailureReason {
     func getErrorMessage() -> String? {
         switch self {
